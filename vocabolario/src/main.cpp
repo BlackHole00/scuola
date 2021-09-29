@@ -16,6 +16,7 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <time.h>
 
 using namespace std;
 
@@ -217,8 +218,6 @@ Vocabolo ChiediVocabolo(string nomeLinguaPrimaria, string nomeLinguaSecondaria) 
 
     vocabolo.vocaboloLinguaPrimaria = ChiediParola(nomeLinguaPrimaria);
     vocabolo.vocaboloLinguaSecondaria = ChiediParola(nomeLinguaSecondaria);
-
-    cout << vocabolo.vocaboloLinguaPrimaria << " " << vocabolo.vocaboloLinguaSecondaria << endl;
 
     return vocabolo;
 }
