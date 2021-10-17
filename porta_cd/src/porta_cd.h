@@ -21,10 +21,13 @@ public:
     void KillCd(int);
 
     int GetNumeroCd() const;
+    int GetMaxSize() const;
 
     int CercaCdPerTitolo(string) const;
 
     string ToString() const;
 
     int CmpPortaCd(const PortaCd&) const;
+
+    bool CheckPos(int) const;
 };

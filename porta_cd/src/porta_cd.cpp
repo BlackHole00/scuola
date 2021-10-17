@@ -43,6 +43,10 @@ int PortaCd::GetNumeroCd() const {
     return count;
 }
 
+int PortaCd::GetMaxSize() const {
+    return maxSize;
+}
+
 int PortaCd::CercaCdPerTitolo(string titolo) const {
     int i = 0;
     while(i < maxSize && vecCd[i].GetTitolo() == titolo) {
@@ -57,8 +61,7 @@ int PortaCd::CercaCdPerTitolo(string titolo) const {
 }
 
 string PortaCd::ToString() const {
-    string str;
-    stringstream ss(str);
+    stringstream ss;
 
     ss << "PortaCd: " << GetNumeroCd() << "cd (" << maxSize << " cd max)" << endl;
     for (int i = 0; i < maxSize; i++) {
@@ -67,7 +70,11 @@ string PortaCd::ToString() const {
         }
     }
 
-    return str;
+    return ss.str();
+}
+
+bool PortaCd::CheckPos(int pos) const {
+    return pos >= 0 && pos < maxSize;
 }
 
 int PortaCd::CmpPortaCd(const PortaCd& other) const {

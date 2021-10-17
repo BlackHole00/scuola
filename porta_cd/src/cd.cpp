@@ -48,14 +48,11 @@ void Cd::SetDurata(int durata) {
 }
 
 string Cd::ToString() const {
-    string str;
     stringstream ss;
 
     ss << "Cd " << titolo << " (by " << autore << ", " << numeroBrani << " brani, durata: " << durata << " secs)" << endl;
 
-    ss.str(str);
-
-    return str;
+    return ss.str();
 }
 
 int Cd::CmpDurata(const Cd& other) const {
@@ -70,13 +67,13 @@ ostream& operator<<(ostream& os, const Cd& cd) {
 }
 
 istream& operator>>(istream& is, Cd& cd) {
-    cout << "Inserisci il titolo";
+    cout << "Inserisci il titolo: ";
     is >> cd.titolo;
-    cout << "Inserisci l'autore";
+    cout << "Inserisci l'autore: ";
     is >> cd.autore;
-    cout << "Inserisci il numero di brani";
+    cout << "Inserisci il numero di brani: ";
     is >> cd.numeroBrani;
-    cout << "Inserisci la durata in secondi";
+    cout << "Inserisci la durata in secondi: ";
     is >> cd.durata;
     
     return is;

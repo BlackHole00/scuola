@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 #include "cd.h"
 #include "porta_cd.h"
 
@@ -19,13 +20,19 @@ int main() {
 
         switch (risp) {
             case '1': {
-                cout << "Inserisci la posizione del cd: ";
+                cout << "Inserisci la posizione del cd (1 - " << pcd.GetMaxSize() << "): ";
                 cin >> temp;
+                temp--;
 
+                if (!pcd.CheckPos(temp)) {
+                    cout << "Pos non valida!!! " << endl;
+                    break;
+                }
                 Cd& cd = pcd.GetCd(temp);
                 if (cd.GetNumeroBrani() != -1) {
                     cout << cd;
-                } else {
+                }
+                else {
                     cout << "Questo slot e' vuoto!!!" << endl;
                 }
 
@@ -35,17 +42,29 @@ int main() {
                 Cd cd;
                 cin >> cd;
 
-                cout << "Inserisci la posizione del cd: ";
+                cout << "Inserisci la posizione del cd (1 - " << pcd.GetMaxSize() << "): ";
                 cin >> temp;
+                temp--;
 
+
+                if (!pcd.CheckPos(temp)) {
+                    cout << "Pos non valida!!! " << endl;
+                    break;
+                }
                 pcd.SetCd(cd, temp);
 
                 break;
             }
             case '3': {
-                cout << "Inserisci la posizione del cd da rimuovere: ";
+                cout << "Inserisci la posizione del cd da rimuovere (1 - " << pcd.GetMaxSize() << "): ";
                 cin >> temp;
+                temp--;
 
+
+                if (!pcd.CheckPos(temp)) {
+                    cout << "Pos non valida!!! " << endl;
+                    break;
+                }
                 pcd.KillCd(temp);
 
                 break;
@@ -56,7 +75,23 @@ int main() {
                 break;
             }
             case '5': {
-                cout << "Todo!!!" << endl;
+                int temp2;
+
+                cout << "Inserisci la posizione del cd 2 (1 - " << pcd.GetMaxSize() << "): ";
+                cin >> temp;
+                temp--;
+
+
+                cout << "Inserisci la posizione del cd 1 (1 - " << pcd.GetMaxSize() << "): ";
+                cin >> temp2;
+                temp2--;
+
+
+                if (!pcd.CheckPos(temp) || !pcd.CheckPos(temp2)) {
+                    cout << "Pos non valida!!! " << endl;
+                    break;
+                }
+                cout << "La differenza in durata e'" << abs(pcd.GetCd(temp).CmpDurata(pcd.GetCd(temp2))) << "secondi." << endl;
 
                 break;
             }
@@ -78,7 +113,7 @@ char Menu() {
     cout << " 2: SetCD" << endl;
     cout << " 3: KillCD" << endl;
     cout << " 4: ViewAllCD" << endl;
-    cout << " 5 [TODO]: CmpCD" << endl;
+    cout << " 5: CmpCD" << endl;
     cout << " 0: Exit" << endl;
     cout << "Risposta: ";
 
