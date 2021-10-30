@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 
+//  Classe stack dinamica (allocazione della memoria dinamica utilizzata).
+//  La dimensione dello stack in memoria viene raddoppiata quando si arriva
+//  Alla dimensione massima.
 template <class T>
 class Stack {
 private:
@@ -9,60 +12,22 @@ private:
     T* stack;
 
 public:
-    Stack() {
-        index = 0;
-        memLen = 1;
+    Stack();
+    ~Stack();
 
-        stack = new T[1];
-    }
+    void Push(T value);
+    T Top();
+    void Pop();
+    T PopReturn();
 
-    ~Stack() {
-        delete[] stack;
-    }
-
-    void Push(T value) {
-        if (index >= memLen) {
-            stack = (T*)realloc(stack, memLen * 2 * sizeof(T));
-            if (stack == NULL) {
-                exit(-1);
-            }
-
-            memLen *= 2;
-        }
-
-        stack[index] = value;
-        index++;
-    }
-
-    T Top() {
-        return stack[index - 1];
-    }
-
-    void Pop() {
-        if (index <= memLen / 2) {
-            stack = (T*)realloc(stack, memLen / 2 * sizeof(T));
-            if (stack == NULL) {
-                exit(-1);
-            }
-
-            memLen /= 2;
-        }
-        index -= (index > 0 ? 1 : 0);
-    }
-
-    T PopReturn() {
-        T value = Top();
-
-        Pop();
-
-        return value;
-    }
-
-    unsigned int Size() {
-        return index;
-    }
-
-    bool IsEmpty() {
-        return index <= 0;
-    }
+    unsigned int Size();
+    bool IsEmpty();
 };
+
+//  La classe e' generica. Tutte le funzioni sono dentro al file .tcc
+//  Questa tecnica non nasconde il codice all'utente, ma rende non necessario
+//  l'utilizzo di 'template class Stack<int>'. Questa tecnica viene anche
+//  utilizzata nella libreria standard del compilatore gcc. Non e' presente
+//  nessun caso di classe con template diviso in file cpp e h, senza l'utilizzo
+//  di questo trucco.
+#include "stack.tcc"

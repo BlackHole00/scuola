@@ -1,7 +1,7 @@
 CC = g++
 LIBS =
 INCS = -I"../utils"
-ARGS = -std=c++98 -Wall -g $(LIBS) $(INCS)
+ARGS = -std=c++11 -Wall -g $(LIBS) $(INCS)
 
 BUILD_DIR = build
 SRC_DIR = src
