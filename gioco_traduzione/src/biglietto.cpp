@@ -1,4 +1,5 @@
 #include "biglietto.h"
+#include <string>
 
 Biglietto::Biglietto() {
     vocaboloPrincipale = "";

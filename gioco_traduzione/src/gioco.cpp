@@ -1,5 +1,6 @@
 #include "gioco.h"
 #include <fstream>
+#include <string>
 
 const char CARATTERE_DIVISORE = '|';
 
@@ -10,6 +11,9 @@ Gioco::Gioco() {
 void Gioco::InizializzaGioco() {
     int num;
     Biglietto temp;
+
+    biglietti = Queue<Biglietto>();
+    numErrori = 0;
 
     cout << "Inserisci il nome della lingua principale: ";
     getline(cin >> ws, linguaPrincipale);
@@ -26,12 +30,30 @@ void Gioco::InizializzaGioco() {
     }
 }
 
+void Gioco::AggiungiBiglietto() {
+    Biglietto temp;
+    cin >> temp;
+
+    biglietti.Enqueue(temp);
+}
+
+void Gioco::ClearBiglietti() {
+    biglietti.Empty();
+}
+
+int Gioco::NumBiglietti() {
+    return biglietti.Length();
+}
+
 bool Gioco::InizializzaGiocoDaFile(string filePath) {
     fstream file;
     file.open(filePath.c_str(), ios::in);
     if (!file.is_open()) {
         return false;
     }
+
+    biglietti = Queue<Biglietto>();
+    numErrori = 0;
 
     getline(file, linguaPrincipale);
     getline(file, linguaStraniera);
@@ -71,7 +93,7 @@ int Gioco::Run() {
 bool Gioco::SalvaSuFile(string filePath) {
     fstream file;
     file.open(filePath.c_str(), ios::out);
-    
+
     if (!file.is_open()) {
         return false;
     }

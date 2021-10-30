@@ -13,11 +13,14 @@ gioco.o:
 biglietto.o:
 	$(CC) -c $(SRC_DIR)/biglietto.cpp -o $(BUILD_DIR)/biglietto.o $(ARGS)
 
+score.o:
+	$(CC) -c $(SRC_DIR)/score.cpp -o $(BUILD_DIR)/score.o $(ARGS)
+
 main.o:
 	$(CC) -c $(SRC_DIR)/main.cpp -o $(BUILD_DIR)/main.o $(ARGS)
 
-all: biglietto.o gioco.o main.o
-	$(CC) $(BUILD_DIR)/gioco.o $(BUILD_DIR)/biglietto.o $(BUILD_DIR)/main.o -o $(BUILD_DIR)/$(APP_NAME) $(ARGS)
+all: biglietto.o gioco.o score.o main.o
+	$(CC) $(BUILD_DIR)/gioco.o $(BUILD_DIR)/biglietto.o $(BUILD_DIR)/score.o $(BUILD_DIR)/main.o -o $(BUILD_DIR)/$(APP_NAME) $(ARGS)
 
 run: all
 	./$(BUILD_DIR)/$(APP_NAME)

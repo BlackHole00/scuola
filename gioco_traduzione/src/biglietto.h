@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//  Classe biglietto
 class Biglietto {
     friend istream& operator>>(istream&, Biglietto&);
 
@@ -12,6 +13,7 @@ private:
 
 public:
     Biglietto();
+    //  Costruttore utilizzato per una linea letta da file con un carattere divisore al suo interno
     Biglietto(string, char);
     Biglietto(string, string);
 
