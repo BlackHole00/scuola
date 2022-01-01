@@ -1,11 +1,15 @@
 #pragma once
 
+//  Struct QueueNode. Utilizzato come nodo della Queue.
+//  Nota: Dovrebbe essere una classe.
 template <class T>
 struct QueueNode {
     T data;
     QueueNode* next_node;
 };
 
+//  Classe Queue. Utilizza una linked list per renderla dinamica
+//  (senza una dimensione definita)
 template <class T>
 class Queue {
 private:
@@ -14,65 +18,23 @@ private:
     unsigned int length;
 
 public:
-    Queue() {
-        first_node = NULL;
-        last_node = NULL;
-        length = 0;
-    }
+    Queue();
+    ~Queue();
 
-    ~Queue() {
-        Empty();
-    }
+    void Enqueue(T value);
+    void Dequeue();
+    void Empty();
+    T Front() const;
+    T DequeueReturn();
 
-    void Enqueue(T value) {
-        if (last_node == NULL) {
-            last_node = new QueueNode<T>();
-            first_node = last_node;
-            first_node->next_node = last_node;
-        } else {
-            last_node->next_node = new QueueNode<T>();
-            last_node = last_node->next_node;
-            last_node->next_node = NULL;
-        }
-
-        last_node->data = value;
-
-        length++;
-    }
-
-    void Dequeue() {
-        if (first_node != NULL) {
-            QueueNode<T>* node = first_node;
-
-            first_node = first_node->next_node;
-
-            delete node;
-            length--;
-        }
-    }
-
-    void Empty() {
-        while(!IsEmpty()) {
-            Dequeue();
-        }
-    }
-
-    T Front() const {
-        return first_node->data;
-    }
-
-    T DequeueReturn() {
-        T value = Front();
-        Dequeue();
-
-        return value;
-    }
-
-    bool IsEmpty() const {
-        return length == 0;
-    }
-
-    unsigned int Length() const {
-        return length;
-    }
+    bool IsEmpty() const;
+    unsigned int Length() const;
 };
+
+//  La classe Queue e' generica. Tutte le funzioni sono dentro al file .tcc
+//  Questa tecnica non nasconde il codice all'utente, ma rende non necessario
+//  l'utilizzo di 'template class Queue<int>'. Questa tecnica viene anche
+//  utilizzata nella libreria standard del compilatore gcc. In tale libreria non e'
+//  presente nessun caso di classe con template diviso in file cpp e h, senza l'
+//  utilizzo di questo trucco.
+#include "queue.tcc"

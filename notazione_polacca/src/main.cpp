@@ -39,7 +39,7 @@ bool GeneraNotazione(const string& in, string& out, map<char, int>& mappaLettere
     Stack<char> s;
 
     bool ok = true;
-    
+
     for (int i = 0; i < in.length(); i++) {
         switch (in[i]) {
             //  Se trovo un simbolo lo metto nello stack.
@@ -87,7 +87,7 @@ bool GeneraNotazione(const string& in, string& out, map<char, int>& mappaLettere
         out += s.PopReturn();   //  Mettiamo tutti i segni che rimangono
     }
 
-    
+
     for (const auto& temp : mappaLettere) {
         cout << "Inserisci il valore di " << temp.first << ": ";
         cin >> mappaLettere[temp.first];
