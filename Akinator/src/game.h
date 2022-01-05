@@ -18,8 +18,6 @@ private:
     BTreeNode<Element>* Deserialize(int& startPos, string resource);
     /* Dato un nodo, crea una stringa che può essere decodificata con Deserialize(). */
     string Serialize(BTreeNode<Element>* node);
-    /* Inserisce un nuovo animale con una nuova domanda come figlia del nodo node. */
-    void InsertAnimal(BTreeNode<Element>* node);
 
 public:
     Game(string saveFile = "save.txt");
@@ -35,6 +33,10 @@ public:
 
     /* Inserisce la prima domanda ed i primi animali. Sostituisce l'albero già esistente. */
     void InsertFirstAnimal();
+
+    BTree<Element>& GetTree() {
+        return tree;
+    }
 
     BTreeNode<Element>* GetTreeRoot() {
         return tree.GetRoot();

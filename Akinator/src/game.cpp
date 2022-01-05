@@ -16,6 +16,8 @@ Game::Game(string saveFile) {
 
 void Game::Clear() {
     tree = BTree<Element>();
+
+    InsertFirstAnimal();
 }
 
 bool Game::Save() {
@@ -39,7 +41,7 @@ bool Game::Load() {
     }
 
     string resource;
-    stream >> resource;
+    getline(stream, resource);
 
     Deserialize(resource);
 
@@ -108,39 +110,6 @@ BTreeNode<Element>* Game::Deserialize(int& startPos, string resource) {
     newNode->SetRightNode(Deserialize(startPos, resource));
 
     return newNode;
-}
-
-
-void Game::InsertAnimal(BTreeNode<Element>* node) {
-    string question;
-    string animal1;
-    string animal2;
-
-    cout << "Inserisci una nuova domanda: ";
-    getline(cin >> ws, question);
-
-    if (AskQuestion("L'animale " + node->GetData().GetData() + " rispetta questa caratteristica? ") == 'n') {
-        animal1 = node->GetData().GetData();
-
-        cout << "Insersci un animale che rispetta la caratteristica: ";
-        getline(cin >> ws, animal2);
-    } else {
-        animal2 = node->GetData().GetData();
-
-        cout << "Insersci un animale che non rispetta la caratteristica: ";
-        getline(cin >> ws, animal1);
-    }
-
-    /* Aggiornamento nodo corrente. */
-    node->GetDataPtr()->SetIsQuestion(true);
-    node->GetDataPtr()->SetData(question);
-
-    /* Creazione e settaggio nuovi nodi. */
-    Element leftElement = Element(animal1, false);
-    Element rightElement = Element(animal2, false);
-
-    node->SetLeftNode(new BTreeNode<Element>(leftElement));
-    node->SetRightNode(new BTreeNode<Element>(rightElement));
 }
 
 void Game::InsertFirstAnimal() {

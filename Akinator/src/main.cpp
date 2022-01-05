@@ -1,6 +1,7 @@
 #include <iostream>
 #include "game.h"
 #include "utils.h"
+#include "question_manager.h"
 
 using namespace std;
 
@@ -8,6 +9,7 @@ char Menu();
 
 int main() {
     Game game = Game("save.txt");
+    QuestionManager qm = QuestionManager(&game);
 
     if (!game.Load()) {
         cout << "Sembra che sia la prima volta che il programma venga avviato. Inserisci la prima domanda! " << endl;
@@ -29,23 +31,7 @@ int main() {
                 break;
             }
             case '2': {
-                if (!game.Save()) {
-                    cout << "Non e' stato possibile salvare." << endl;
-                }
-
-                break;
-
-                break;
-            }
-            case '3': {
-                if (!game.Load()) {
-                    cout << "Non e' stato possibile caricare." << endl;
-                }
-
-                break;
-            }
-            case '4': {
-                game.Clear();
+                qm.Run();
 
                 break;
             }
@@ -69,9 +55,7 @@ int main() {
 char Menu() {
     cout << "-----AKINATOR-----" << endl;
     cout << "[1]: Gioca" << endl;
-    cout << "[2]: Salva" << endl;
-    cout << "[3]: Carica" << endl;
-    cout << "[4]: Pulisci" << endl;
+    cout << "[2]: Vai al gestore domande" << endl;
     cout << "[0]: Esci" << endl;
     cout << "Risposta: ";
 

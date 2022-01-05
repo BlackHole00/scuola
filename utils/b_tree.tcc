@@ -90,3 +90,20 @@ int BTree<T>::NumberOfLeaves(BTreeNode<T>* node) const {
 
     return n;
 }
+
+template <class T>
+void BTree<T>::Remove(BTreeNode<T>* superiorNode, BTreeNode<T>* node) {
+    if (node == NULL) {
+        return;
+    }
+
+    Remove(node, node->GetLeftNode());
+    Remove(node, node->GetRightNode());
+
+    delete node;
+    if (superiorNode->GetLeftNode() == node) {
+        superiorNode->SetLeftNode(NULL);
+    } else {
+        superiorNode->SetRightNode(NULL);
+    }
+}

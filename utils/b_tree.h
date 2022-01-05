@@ -53,6 +53,8 @@ public:
     bool IsEmpty() const {
         return root == NULL;
     }
+
+    void Remove(BTreeNode<T>* superiorNode, BTreeNode<T>* node);
 };
 
 #include "b_tree.tcc"

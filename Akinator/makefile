@@ -19,8 +19,11 @@ game.o:
 utils.o:
 	$(CC) -c $(SRC_DIR)/utils.cpp -o $(BUILD_DIR)/utils.o $(ARGS)
 
-all: main.o element.o game.o utils.o
-	$(CC) $(BUILD_DIR)/main.o $(BUILD_DIR)/element.o $(BUILD_DIR)/game.o $(BUILD_DIR)/utils.o -o $(BUILD_DIR)/$(APP_NAME) $(ARGS)
+qmanager.o:
+	$(CC) -c $(SRC_DIR)/question_manager.cpp -o $(BUILD_DIR)/qmanager.o $(ARGS)
+
+all: main.o element.o game.o utils.o qmanager.o
+	$(CC) $(BUILD_DIR)/main.o $(BUILD_DIR)/element.o $(BUILD_DIR)/game.o $(BUILD_DIR)/utils.o $(BUILD_DIR)/qmanager.o -o $(BUILD_DIR)/$(APP_NAME) $(ARGS)
 
 run: all
 	./$(BUILD_DIR)/$(APP_NAME)
