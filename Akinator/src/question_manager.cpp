@@ -9,6 +9,7 @@ QuestionManager::QuestionManager(Game* game) {
 }
 
 void QuestionManager::Run() {
+    /* L'albero non deve essere vuoto. Se lo e', c'e' stato un errore da parte del programmatore. */
     currentNode = game->GetTreeRoot();
     assert(currentNode != NULL);
 
