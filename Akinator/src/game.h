@@ -48,9 +48,9 @@ public:
 
     void Deserialize(string resource) {
         int tmp = 0;
-        tree = BTree<Element>(Deserialize(tmp, resource));
+        tree.SetRoot(Deserialize(tmp, resource));
     }
 
-    /* Azzera l'albero binario. */
+    /* Azzera l'albero binario e chiede il primo animale. */
     void Clear();
 };

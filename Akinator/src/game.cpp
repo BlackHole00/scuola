@@ -148,7 +148,8 @@ bool Game::Play() {
     BTreeNode<Element>* node = tree.GetRoot();
 
     /*  Avanziamo nell'albero finchè non raggiungiamo un nodo che non è una domanda. */
-    while (node->GetData().IsQuestion()) {
+    //while (node->GetData().IsQuestion()) {
+    while (node->GetLeftNode() != NULL && node->GetRightNode() != NULL) {
         if (AskQuestion(node->GetData().GetData()) == 'n') {
             node = node->GetLeftNode();
         } else {

@@ -1,1 +1,8 @@
 1Vive in acqua?|1vola?|1canino?|1pericoloso?|0gatto|##0orso|##1domestico?|0lupo|##0cane|##0piccione|##1Vive in mare?|0trota|##1E' pericoloso?|1sputa acqua?|0sardina|##0balena|##1Ha le pinne?|0medusa|##0squalo|##
+
+Domanda1
+|       |
+v       v
+anim1   anim2
+
+1Domanda1|0anim1|##0anim2|##
